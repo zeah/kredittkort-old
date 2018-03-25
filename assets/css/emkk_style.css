@@ -1,0 +1,510 @@
+/*
+	INDEX
+	#####
+	-default
+
+	1.0 GRID
+	-list
+	-container
+		TITLE
+		THUMBNAIL
+		LENKE-TEMPLATE
+		LESMER
+		INFO
+			INFO-ONE
+			INFO-TWO
+			INFO-THREE
+		BLURB
+		ALDERSGRENSE (ALDERSGRENSE OVERWRITE)
+		MAKS KREDITT
+		RENTEFRI KREDITT
+		BESTILL
+		EFFRENTE
+	-internet explorer fixes
+*/
+
+html {
+	font-size: 62.5%;
+}
+
+p:empty {
+	display: none;
+}
+/*
+	1.0 SECTION
+	Grid
+*/
+
+.emkort-kortliste {
+	padding: 0;
+
+	color: hsl(0, 20%, 20%);
+}
+
+.emkort-container {
+	display: grid;
+	display: -ms-grid;
+
+	grid-template-columns: 23rem 1px 5fr 1px 15rem 1px 2fr 1px 23rem;
+	-ms-grid-columns: 23rem 1px 5fr 1px 15rem 1px 2fr 1px 23rem;
+
+	grid-template-rows: 3.5rem repeat(3, 4.6rem) 1px 4.6rem;
+	-ms-grid-rows: 3.5rem 4.6rem 4.6rem 4.6rem 1px 4.6rem;
+
+	grid-template-areas:
+		"title title title title title title title title title"
+		"thumbnail sep1 info-one sep2 alder alder alder sep3 bestill"
+		"thumbnail sep1 info-two sep2 kreditt kreditt kreditt sep3 bestill"
+		"thumbnail sep1 info-three sep2 rentefri rentefri rentefri sep3 bestill"
+		"sep6 sep6 sep6 sep6 sep6 sep6 sep6 sep6 sep6"
+		"lesmer sep4 blurb blurb blurb sep5 effrente effrente effrente";
+
+	margin-bottom: 2rem;
+	background-color: hsl(204, 8%, 98%);
+	/*background-image: url(image/b31.png);*/
+	border-top: solid 1px;
+	border-color: hsl(0, 0%, 85%);
+	list-style: none;
+
+	text-align: center;
+
+	/* default font stuff b/c this is a plugin */
+	font-size: 1.4rem;
+	font-weight: 400;
+	font-style: normal;
+	font-family: arial;
+	clear: both;
+
+}
+.emkort-container:nth-child(odd) {
+	/*background-image: url(image/b30.png);*/
+	background-color: hsl(0, 0%, 94%);;
+	border-color: hsl(0, 0%, 75%);
+}
+
+.emkort-sep {
+	border-right: dotted 1px;
+	border-color: inherit;
+	margin: 5px 0;
+}
+
+.emkort-sep-1 {
+	grid-area: sep1;
+}
+.emkort-sep-2 {
+	grid-area: sep2;
+}
+
+.emkort-sep-3 {
+	grid-area: sep3;
+}
+
+.emkort-sep-4 {
+	grid-area: sep4;
+}
+
+.emkort-sep-5 {
+	grid-area: sep5;
+}
+
+.emkort-sep-6 {
+	border: none;
+	border-top: dotted 1px;
+	border-color: inherit;
+	grid-area: sep6;
+	margin: 0;
+}
+
+/* 	TITLE
+	DIV -> H2 -> A
+*/
+.emkort-title {
+	grid-area: title;
+
+	padding-left: 1.6rem;
+
+	text-align: left;
+}
+.emkort-title-header {
+	margin: 0;
+}
+.emkort-title-text {
+	color: inherit;
+	font-weight: normal;
+	font-size: 1.6rem;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+/* 	THUMBNAIL 
+	DIV -> IMG 
+*/
+.emkort-thumbnail {
+	grid-area: thumbnail;
+}
+.emkort-thumbnail-image {
+	width: 20rem;
+}
+
+/*	LENKE-TEMPLATE
+	A
+*/
+.emkort-lenke {
+	padding: 1rem 2rem;
+	border-radius: 0.5rem;
+	text-decoration: none;
+	color: #fff;
+	text-shadow: 0 0 1px #000;
+}
+
+/* 	LESMER
+	DIV -> A
+*/
+.emkort-lesmer {
+	grid-area: lesmer;
+	align-self: center;
+}
+.emkort-lesmer-lenke {
+	background: linear-gradient(hsl(240, 10%, 80%), hsl(240, 10%, 70%));
+	font-weight: 700;
+	padding: 0.5rem 2rem;
+}
+.emkort-lesmer-lenke:hover {
+	background: linear-gradient(hsl(240, 10%, 70%), hsl(240, 10%, 60%));
+}
+
+/* INFO TEMPLATE */
+.emkort-info {
+	display: list-item;
+	margin: 0 1rem 0 2rem;
+	list-style: disc outside;
+	text-align: left;
+	line-height: 1;
+}
+
+/*
+	INFO-ONE
+	DIV
+*/
+.emkort-info-0 {
+	grid-area: info-one;
+}
+
+/*
+	INFO-TWO
+	DIV
+*/
+.emkort-info-1 {
+	grid-area: info-two;
+}
+
+/*
+	INFO-THREE
+	DIV
+*/
+.emkort-info-2 {
+	grid-area: info-three;
+}
+
+/*
+	BLURB
+	DIV SPAN.text DIV.logo
+*/
+.emkort-blurb {
+	grid-area: blurb;
+	padding-left: 2rem;
+	display: flex;
+	justify-content: space-between;
+	line-height: 3.2;
+}
+.emkort-logo-container {
+	position: relative;
+	top: 0.8rem;
+	right: 0.8rem;
+}
+
+/* COLUMN 3 TEMPLATE */
+.emkort-aldersgrense,
+.emkort-alderow,
+.emkort-makskreditt,
+.emkort-rentefrikreditt {
+	justify-self: left;
+	padding-left: 1rem;
+}
+
+/*
+	ALDERSGRENSE
+	DIV
+*/
+.emkort-aldersgrense {
+	grid-area: alder;
+	line-height: 1;
+}
+.emkort-aldersgrense:before {
+	font-weight: 700;
+	content: 'Aldersgrense ';
+}
+
+/* alternate for aldersgrense area*/
+.emkort-alderow {
+	grid-area: alder;
+	line-height: 1;
+}
+
+
+/*
+	MAKS KREDITT
+	DIV
+*/
+.emkort-makskreditt {
+	grid-area: kreditt;
+	line-height: 1;
+}
+.emkort-makskreditt:before {
+	font-weight: 700;
+	content: 'Maks Kreditt ';
+}
+
+
+/*
+	RENTFRI KREDITT
+	DIV
+*/
+.emkort-rentefrikreditt {
+	grid-area: rentefri;
+	line-height: 1;
+}
+.emkort-rentefrikreditt:before {
+	font-weight: 700;
+	content: 'Rentefri kreditt ';
+}
+
+
+/*
+	BESTILL
+	DIV -> A
+*/
+.emkort-sokna {
+	grid-area: bestill;
+	align-self: center;
+
+	position: relative;
+
+	height: 100%;
+	border-color: inherit;
+}
+
+.emkort-sokna:before {
+	display: block;
+	position: absolute;
+	content: 'annonselenke';
+	top: 7rem;
+	left: 0;
+	right: 0;
+}
+.emkort-sokna-lenke {
+	position: absolute;
+	top: 2rem;
+	left: 1rem;
+	right: 1rem;
+	display: block;
+	font-size: 2.2rem;
+	font-weight: 700;
+	line-height: 1.2;
+	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
+}
+.emkort-sokna-lenke:hover {
+	background: linear-gradient(hsl(120, 70%, 50%), hsl(120, 70%, 20%));
+}
+
+/* CSS FOR WHEN ONLY SHOWING BESTILL BUTTON */
+.emkort-bestill {
+	background-color: transparent;
+	text-align: center;
+	height: auto;
+	border: none;
+}
+.emkort-bestillknapp {
+	padding: 1rem 2rem;
+	margin: 0;
+	height: 5rem;
+	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
+	line-height: 2.2;
+	font-size: 2.20rem;
+	white-space: nowrap;
+}
+.emkort-bestillknapp:hover {
+	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
+}
+
+/*
+	EFFRENTE
+	DIV
+*/
+.emkort-effrente {
+	grid-area: effrente;
+	align-self: center;
+}
+
+
+/*INTERNET EXPLORER*/
+.emkort-title {
+	-ms-grid-row: 1;
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 9;
+}
+
+.emkort-thumbnail {
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 2;
+	-ms-grid-column: 1;
+}
+
+.emkort-sep-6 {
+	-ms-grid-row: 5;
+	-ms-grid-column: 1;
+	-ms-grid-column-span: 9;
+}
+
+.emkort-lesmer {
+	-ms-grid-row: 6;
+	-ms-grid-column: 1;
+	-ms-grid-row-align: center;
+}
+
+.emkort-sep-1 {
+	-ms-grid-column: 2;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 3;
+}
+
+.emkort-sep-2 {
+	-ms-grid-column: 4;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 3;
+}
+
+.emkort-sep-3 {
+	-ms-grid-column: 8;
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 3;
+}
+
+.emkort-sep-4 {
+	-ms-grid-column: 2;
+	-ms-grid-row: 6;
+}
+
+.emkort-sep-5 {
+	-ms-grid-column: 6;
+	-ms-grid-row: 6;
+}
+
+
+.emkort-info-0 {
+	-ms-grid-row: 2;
+	-ms-grid-column: 3;
+}
+
+.emkort-info-1 {
+	-ms-grid-row: 3;
+	-ms-grid-column: 3;
+}
+
+.emkort-info-2 {
+	-ms-grid-row: 4;
+	-ms-grid-column: 3;
+}
+
+.emkort-blurb {
+	-ms-grid-row: 6;
+	-ms-grid-column: 3;
+	-ms-grid-column-span: 3;
+}
+
+.emkort-aldersgrense,
+.emkort-alderow,
+.emkort-makskreditt,
+.emkort-rentefrikreditt {
+	text-align: left;
+	-ms-grid-column: 5;
+	-ms-grid-column-span: 3;
+}
+
+.emkort-aldersgrense {
+	-ms-grid-row: 2;
+}
+
+.emkort-alderow {
+	-ms-grid-row: 2;
+}
+
+.emkort-makskreditt {
+	-ms-grid-row: 3;
+}
+
+.emkort-rentefrikreditt {
+	-ms-grid-row: 4;
+}
+
+.emkort-sokna {
+	-ms-grid-row: 2;
+	-ms-grid-row-span: 3;
+	-ms-grid-column: 9;
+}
+
+.emkort-effrente {
+	-ms-grid-row: 6;
+	-ms-grid-column: 7;
+	-ms-grid-column-span: 3;
+	-ms-grid-row-align: center;
+}
+
+/* DESKTOP SAFARI VERSION 9 - 9.1 - 10 */
+@supports not (display: grid) {
+	.emkort-kortliste {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.emkort-container {
+		width: 33%;
+	}
+
+	.emkort-info {
+		height: 3rem;
+		margin: 1rem 3rem;
+		border: none;
+	}
+
+	.emkort-sokna {
+		background-color: inherit;
+		height: auto;
+		position: initial;
+
+		margin: 1rem 0;
+	}
+
+	.emkort-lesmer {
+		margin-bottom: 1rem;
+	}
+
+	.emkort-sokna-lenke {
+		position: initial;
+		display: inline-block;
+	}
+
+	.emkort-alderow,
+	.emkort-aldersgrense,
+	.emkort-makskreditt,
+	.emkort-rentefrikreditt {
+		display: inline-block;
+		width: 25%;
+		padding: 0;
+		font-size: 1.2rem;
+	}
+
+	.emkort-sep {
+		display: none;
+	}
+}

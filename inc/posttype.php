@@ -3,12 +3,13 @@
 defined( 'ABSPATH' ) or die( 'Blank Space' );
 
 require_once 'taxonomy.php';
+require_once 'edit.php';
 
 /*
 	REGISTERING CUSTOM POST TYPE
 */
 final class Emkk_posttype {
-	/* SINGLETON */
+	/* singleton */
 	private static $instance = null;
 
 	public static function get_instance() {
@@ -19,20 +20,22 @@ final class Emkk_posttype {
 	}
 
 	private function __construct() {
+		/* creates taxonomy */
 		Emkk_taxonomy::get_instance();
 
-		add_action( 'admin_enqueue_scripts', array($this, 'enqueue_script') );
+		/* page edit screen */
+		Emkk_edit::get_instance();
+
+		/* creates custom post type: emkort */
 		add_action('init', array($this, 'create_cpt'));
 	}
 
-	public function enqueue_script($hook) {
-		if (isset($_GET['post']) && get_post_type($_GET['post']) == 'emkort')
-			wp_enqueue_script( 'emkk_kredittkort_admin', PLUGIN_URL . '/assets/js/emkk_kredittkort_admin.js', array(), false, true );
-	}
-
+	/*
+		create custom post type: emkort 
+	*/
 	public function create_cpt() {
-		$plur = 'Kreditt Kort';
-		$sing = 'Kreditt Kort';
+		$plur = 'Kredittkort';
+		$sing = 'Kredittkort';
 	
 		$labels = array(
 			'name'               => __( $plur, 'text-domain' ),
@@ -62,7 +65,7 @@ final class Emkk_posttype {
 			'menu_icon' => 'dashicons-id',
 			'show_in_nav_menus'   => false,
 			'publicly_queryable'  => false,
-			'exclude_from_search' => true,
+			'exclude_from_search' => false,
 			'has_archive'         => false,
 			'query_var'           => true,
 			'can_export'          => true,

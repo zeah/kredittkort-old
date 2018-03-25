@@ -1,0 +1,27 @@
+html {
+	font-size: 62.5%;
+}
+
+.emkort-meta-container {
+	width: 55rem;
+}
+
+.emkort-container {
+	margin: 1rem 0 5rem 1rem;
+	padding-bottom: 1rem;
+	border-bottom: dashed 3px #ccc;
+}
+
+.emkort-title {
+	font-size: 1.6rem;
+	margin-bottom: 0.5rem;
+}
+
+.emkort-input {
+	width: 50rem;
+}
+
+.emkort-counter {
+	padding-left: 1rem;
+	font-size: 1.6rem;
+}

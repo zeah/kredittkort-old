@@ -16,8 +16,10 @@ require_once 'inc/shortcode.php';
 function emkk_init() {
 
 	if (is_admin())
+		/* admin page */
 		Emkk_admin::get_instance();
 	else
+		/* front page */
 		Emkk_shortcode::get_instance();
 
 }

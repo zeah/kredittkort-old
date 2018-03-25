@@ -21,8 +21,13 @@ final class Emkk_admin {
 	}
 
 	private function __construct() {
+		/* creates custom post type */
 		Emkk_posttype::get_instance();
+
+		/* wordpress customizer */
 		Emkk_customizer::get_instance();
+
+		/* plugin settings page */
 		Emkk_settings::get_instance();
 	}
 }

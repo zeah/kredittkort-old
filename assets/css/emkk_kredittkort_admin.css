@@ -1,0 +1,23 @@
+#emkort_sort,
+#make_list {
+	width: 150px;
+}
+
+.emkort-container {
+	margin: 10px;
+	padding: 10px;
+	font-size: 20px;
+	background-color: #dee;
+}
+
+.emkort-xbutton {
+	margin-right: 10px;
+}
+
+.emkort-span {
+	cursor: pointer;
+}
+
+.emkort-span:hover {
+	background-color: #eee;
+}
