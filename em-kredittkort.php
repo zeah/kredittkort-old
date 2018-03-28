@@ -3,7 +3,7 @@
 /**
 	Plugin Name: EM-kredittkort
 	Description: kredittkortliste for effektiv markedsforing
-	Version: 0.0.1
+	Version: 1.0.0
 */
 
 defined( 'ABSPATH' ) or die(' Blank Space' );
@@ -21,6 +21,7 @@ function emkk_init() {
 	else
 		/* front page */
 		Emkk_shortcode::get_instance();
+
 
 }
 add_action('plugins_loaded', 'emkk_init');

@@ -1,0 +1,17 @@
+html {
+	font-size: 62.5%;
+}
+
+.emkort-info-container {
+	width: 50rem;
+
+	margin: 3rem;
+	padding: 1rem;
+
+	/*background-color: #ffffff;*/
+}
+
+.emkort-info-li {
+	list-style: disc;
+	margin-bottom: 2rem;
+}

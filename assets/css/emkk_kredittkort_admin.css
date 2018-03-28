@@ -12,6 +12,7 @@
 
 .emkort-xbutton {
 	margin-right: 10px;
+	user-select: none;
 }
 
 .emkort-span {

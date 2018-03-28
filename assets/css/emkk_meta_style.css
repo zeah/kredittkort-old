@@ -6,13 +6,13 @@ html {
 	width: 55rem;
 }
 
-.emkort-container {
+.emkort-admin-container {
 	margin: 1rem 0 5rem 1rem;
 	padding-bottom: 1rem;
 	border-bottom: dashed 3px #ccc;
 }
 
-.emkort-title {
+.emkort-admin-title {
 	font-size: 1.6rem;
 	margin-bottom: 0.5rem;
 }
@@ -24,4 +24,8 @@ html {
 .emkort-counter {
 	padding-left: 1rem;
 	font-size: 1.6rem;
+}
+
+.emkort-button-copy {
+	float: right;
 }

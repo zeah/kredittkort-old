@@ -3,6 +3,19 @@
 defined('ABSPATH') or die('Blank Space');
 
 
+/*
+	screens:
+		edit-kredittkort 
+		type: kredittkort 
+	
+	adding css/js to these screens
+	
+	setting columns for kredittkort
+	adding meta boxes
+	save feature
+
+*/
+
 final class Emkk_edit {
 	/* singleton */
 	private static $instance = null;
@@ -79,6 +92,14 @@ final class Emkk_edit {
 			'emkort' // page
 		);
 
+		add_meta_box(
+			'emkort_sprite', // name
+			'CSS Sprite', // title 
+			array($this,'create_meta_box_sprite'), // callback
+			'emkort', // page
+			'side'
+		);
+
 		/* css sprite metabox */
 		// dropdown of images to use
 
@@ -86,6 +107,7 @@ final class Emkk_edit {
 		// name of bank etc
 
 		// javascript for creating content in metaboxes
+		wp_enqueue_style('emkk_style', PLUGIN_URL . '/assets/css/emkk_style.css', array(), false);
 		wp_enqueue_script('emkk_emkort_meta', PLUGIN_URL . '/assets/js/emkk_emkort_meta.js', array(), false, true);
 		wp_enqueue_style('emkk_meta_style', PLUGIN_URL . '/assets/css/emkk_meta_style.css', array(), false);
 	}
@@ -109,6 +131,10 @@ final class Emkk_edit {
 
 		wp_localize_script( 'emkk_emkort_meta', 'emkk_meta', json_decode( json_encode( $json ), true) );
 		echo '<div class="emkort-meta-container"></div>';
+	}
+
+	public function create_meta_box_sprite($post) {
+		echo '<div class="emkort-sprite-container"></div>';
 	}
 
 	/*
@@ -152,6 +178,8 @@ final class Emkk_edit {
 
 		// data is sent, then sanitized and saved
 		if (isset($_POST['emdata'])) update_post_meta($post_id, 'em_data', $this->sanitize($_POST['emdata']));
+		if (isset($_POST['emkort_sort'])) update_post_meta($post_id, 'emkort_sort', $this->sanitize($_POST['emkort_sort']));
+
 	}
 
 	/*

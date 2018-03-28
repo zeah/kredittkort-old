@@ -60,6 +60,6 @@ final class Emkk_taxonomy {
 			'capabilities'      => array(),
 		);
 	
-		register_taxonomy( 'korttype', 'emkort', $args );
+		register_taxonomy('korttype', 'emkort', $args );
 	}
 }

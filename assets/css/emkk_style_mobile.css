@@ -1,0 +1,279 @@
+/*
+	INDEX
+	#####
+	-defaults
+	-wordpress fixes
+	
+	LIST CONTAINER (UL)
+	CONTAINER FOR EACH ITEM (LI)
+	TITLE
+		H2
+		ANCHOR
+
+*/
+html {
+	/*font-size: 62.5%;*/
+}
+
+/*
+	LIST CONTAINER (UL)
+*/
+.emkort-kortliste {
+	/* remove default */
+	margin: 0;
+	padding: 0;
+	font-size: 1.6rem;
+	font-family: "Roboto", sans-serif;
+	clear: both;
+	opacity: 1 !important;
+}
+
+/*
+	CONTAINER FOR EACH ITEM (LI)
+*/
+.emkort-container {
+	list-style: none;
+	margin-bottom: 3rem;
+
+	background-color: #f2f2f2;
+	/*background-color: #efdeef;*/
+}
+.emkort-container:nth-child(odd) {
+	background-color: #e6e6e6;
+	/*background-color: #deefef;*/
+}
+
+/*	TITLE
+	DIV -> H2 -> ANCHOR */
+.emkort-title {
+	text-align: center;
+}
+.emkort-title-header {
+	margin: 0; /* removes default tag padding */
+}
+.emkort-title-text {
+	/*text-shadow: 0 0 1px black;*/
+	text-decoration: none;
+	font-size: 2rem;
+	color: #000000; /* to be set in customizer */
+}
+
+/*	THUMBNAIL
+	DIV -> IMG
+*/
+.emkort-thumbnail {
+	text-align: center;
+	/*height: 17rem;*/
+}
+.emkort-thumbnail-image {
+	/*width: 70%;*/
+	width: 20rem;
+	border-radius: 8px;
+}
+
+/*	INFO
+	*/
+.emkort-info {
+	display: list-item;
+	list-style: square;
+	width: 70%;
+	margin-left: 15%;
+	margin-bottom: 2rem;
+	list-style-position: inside;
+}
+
+/* DEFAULT BUTTON CSS */
+.emkort-lenke {
+	padding: 0.5rem 1rem;
+	border-radius: 5px;
+
+	background-color: red;
+
+	font-size: 2.2rem;
+	color: #ffffff;
+	text-decoration: none;
+	text-shadow: 0 0 1px black;
+	display: block;
+}
+
+.emkort-sokna,
+.emkort-lesmer {
+	width: 70%;
+	font-weight: 700;
+}
+
+/*
+	BESTILL BUTTON
+	DIV -> ANCHOR */
+.emkort-sokna {
+	text-align: center;
+	margin: 2rem auto;
+}
+
+.emkort-sokna-lenke {
+	background-color: #00b300;
+	font-size: 2.6rem;
+}
+
+
+/*
+	LESMER BUTTON
+	DIV -> ANCHOR */
+.emkort-lesmer {
+	text-align: center;
+	margin: 2rem auto;
+}
+.emkort-lesmer-lenke {
+	background-color: #bbb;
+	font-size: 1.6rem;
+}
+
+.emkort-aldersgrense,
+.emkort-makskreditt,
+.emkort-alderow {
+	display:inline-block;
+	width: 48%;
+}
+
+.emkort-aldersgrense,
+.emkort-rentefrikreditt,
+.emkort-makskreditt,
+.emkort-alderow {
+	text-align: center;
+	padding-bottom: 1rem;
+}
+
+.emkort-makskreditt:before,
+.emkort-aldersgrense:before,
+.emkort-rentefrikreditt:before {
+	display: block;
+	font-weight: 700;
+}
+
+.emkort-makskreditt:before {
+	content: 'Maks Kreditt';
+}
+
+.emkort-aldersgrense:before {
+	content: 'Aldersgrense';
+}
+
+/*.emkort-rentefrikreditt {
+	text-align: center;
+}*/
+.emkort-rentefrikreditt:before {
+	content: 'Rentefri Kreditt';
+}
+
+.emkort-effrente {
+	margin: 1rem 0;
+	text-align: center;
+	font-style: italic;
+}
+
+.emkort-blurb {
+	text-align: center;
+	padding-bottom: 2rem;
+}
+
+
+.emkort-logo-container {
+	display: inline-block;
+	position: relative;
+	top: 1rem;
+}
+
+.em-sprite {
+    display: block;
+    /*background-image: url(../img/spritesheet.png);*/
+    /*background-image: url(../img/spritesheet_1.jpg);*/
+    background-repeat: no-repeat;
+    justify-self: center;
+    border-radius: 8px;
+    margin: auto;
+    /*text-align: center;*/
+}
+
+.sprite-365privat {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -5px;
+}
+
+.sprite-Aros_Finans {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -5px;
+}
+
+.sprite-Circle_K_MasterCard {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -5px;
+}
+
+.sprite-bank_norwegian {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -141px;
+}
+
+.sprite-credits_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -141px;
+}
+
+.sprite-flexi_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -141px;
+}
+
+.sprite-ikano_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -277px;
+}
+
+.sprite-komplett_kredittkort {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -277px;
+}
+
+.sprite-remember_black_card {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -277px;
+}
+
+.sprite-santander_gold {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -413px;
+}
+
+.sprite-santander_manu {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -413px;
+}
+
+.sprite-santander_red {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -413px;
+}
+
+.sprite-sas_amex_classic {
+    width: 200px;
+    height: 126px;
+    background-position: -635px -5px;
+}
+
+.sprite-yx_visa_bensinkort {
+    width: 200px;
+    height: 126px;
+    background-position: -635px -141px;
+}

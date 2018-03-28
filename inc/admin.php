@@ -5,6 +5,7 @@ defined( 'ABSPATH' ) or die( 'Blank Space' );
 require_once 'posttype.php';
 require_once 'customizer.php';
 require_once 'settings.php';
+require_once 'info.php';
 
 /*
 	ADMIN SIDE STUFF
@@ -29,5 +30,12 @@ final class Emkk_admin {
 
 		/* plugin settings page */
 		Emkk_settings::get_instance();
+
+		/* plugin info */
+		Emkk_info::get_instance();
+	}
+
+	public function enqueue() {
+		
 	}
 }

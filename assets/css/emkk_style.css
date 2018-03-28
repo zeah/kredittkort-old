@@ -30,6 +30,12 @@ html {
 p:empty {
 	display: none;
 }
+
+/* special rule with bb-code */
+.emkort-fat {
+	font-weight: bold;
+}
+
 /*
 	1.0 SECTION
 	Grid
@@ -37,7 +43,7 @@ p:empty {
 
 .emkort-kortliste {
 	padding: 0;
-
+	opacity: 1 !important;
 	color: hsl(0, 20%, 20%);
 }
 
@@ -55,7 +61,7 @@ p:empty {
 		"title title title title title title title title title"
 		"thumbnail sep1 info-one sep2 alder alder alder sep3 bestill"
 		"thumbnail sep1 info-two sep2 kreditt kreditt kreditt sep3 bestill"
-		"thumbnail sep1 info-three sep2 rentefri rentefri rentefri sep3 bestill"
+		"thumbnail sep1 info-three sep2 rentefri rentefri rentefri sep3 ."
 		"sep6 sep6 sep6 sep6 sep6 sep6 sep6 sep6 sep6"
 		"lesmer sep4 blurb blurb blurb sep5 effrente effrente effrente";
 
@@ -141,9 +147,24 @@ p:empty {
 */
 .emkort-thumbnail {
 	grid-area: thumbnail;
+	border-radius: 8px;
 }
 .emkort-thumbnail-image {
 	width: 20rem;
+	border-radius: 8px;
+}
+
+.emkort-thumbnail-left {
+	float: left;
+}
+
+.emkort-thumbnail-center {
+	width: 20rem;
+	margin: auto;
+}
+
+.emkort-thumbnail-right {
+	float: right;
 }
 
 /*	LENKE-TEMPLATE
@@ -287,30 +308,19 @@ p:empty {
 .emkort-sokna {
 	grid-area: bestill;
 	align-self: center;
-
-	position: relative;
-
-	height: 100%;
-	border-color: inherit;
+	justify-self: center;
+	text-align: center;
 }
 
-.emkort-sokna:before {
+.emkort-sokna:after {
 	display: block;
-	position: absolute;
 	content: 'annonselenke';
-	top: 7rem;
-	left: 0;
-	right: 0;
 }
 .emkort-sokna-lenke {
-	position: absolute;
-	top: 2rem;
-	left: 1rem;
-	right: 1rem;
 	display: block;
 	font-size: 2.2rem;
 	font-weight: 700;
-	line-height: 1.2;
+	line-height: 1;
 	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
 }
 .emkort-sokna-lenke:hover {
@@ -318,7 +328,7 @@ p:empty {
 }
 
 /* CSS FOR WHEN ONLY SHOWING BESTILL BUTTON */
-.emkort-bestill {
+/*.emkort-bestill {
 	background-color: transparent;
 	text-align: center;
 	height: auto;
@@ -330,12 +340,12 @@ p:empty {
 	height: 5rem;
 	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
 	line-height: 2.2;
-	font-size: 2.20rem;
+	font-size: 2.2rem;
 	white-space: nowrap;
 }
 .emkort-bestillknapp:hover {
 	background: linear-gradient(hsl(120, 70%, 60%), hsl(120, 70%, 30%));
-}
+}*/
 
 /*
 	EFFRENTE
@@ -345,6 +355,8 @@ p:empty {
 	grid-area: effrente;
 	align-self: center;
 }
+
+
 
 
 /*INTERNET EXPLORER*/
@@ -507,4 +519,97 @@ p:empty {
 	.emkort-sep {
 		display: none;
 	}
+}
+
+
+.em-sprite {
+    display: block;
+    /*background-image: url(../img/spritesheet.png);*/
+    /*background-image: url(../img/spritesheet_1.jpg);*/
+    background-repeat: no-repeat;
+    justify-self: center;
+}
+
+.sprite-365privat {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -5px;
+}
+
+.sprite-Aros_Finans {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -5px;
+}
+
+.sprite-Circle_K_MasterCard {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -5px;
+}
+
+.sprite-bank_norwegian {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -141px;
+}
+
+.sprite-credits_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -141px;
+}
+
+.sprite-flexi_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -141px;
+}
+
+.sprite-ikano_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -277px;
+}
+
+.sprite-komplett_kredittkort {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -277px;
+}
+
+.sprite-remember_black_card {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -277px;
+}
+
+.sprite-santander_gold {
+    width: 200px;
+    height: 126px;
+    background-position: -5px -413px;
+}
+
+.sprite-santander_manu {
+    width: 200px;
+    height: 126px;
+    background-position: -215px -413px;
+}
+
+.sprite-santander_red {
+    width: 200px;
+    height: 126px;
+    background-position: -425px -413px;
+}
+
+.sprite-sas_amex_classic {
+    width: 200px;
+    height: 126px;
+    background-position: -635px -5px;
+}
+
+.sprite-yx_visa_bensinkort {
+    width: 200px;
+    height: 126px;
+    background-position: -635px -141px;
 }
