@@ -8,10 +8,16 @@ require_once 'taxonomy.php';
 	FRONT-END STUFF
 */
 final class Emkk_shortcode {
-	/* SINGLETON */
+	/* singleton */
 	private static $instance = null;
-	private $mobile = false;
+
+	// if js is added to html (which adds css)
 	private $added_js = false;
+
+	// internal resources
+	private $sprite = PLUGIN_URL.'assets/img/spritesheet_1.jpg';
+	private $desktop = PLUGIN_URL.'assets/css/emkk_style.css';
+	private $mobile = PLUGIN_URL.'assets/css/emkk_style_mobile.css';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
@@ -20,17 +26,30 @@ final class Emkk_shortcode {
 	}
 
 	private function __construct() {
-		$this->mobile = wp_is_mobile();
-
 		// giving access to taxonomy
 		Emkk_taxonomy::get_instance();
+	
+		// setting external resources
+		$res = get_option('emkk_settings');
+		if (! isset($res['css_disable'])) {
+			if (isset($res['css_sprite']) && $res['css_sprite'] != '') $this->sprite = $res['css_sprite'];
+			if (isset($res['css_desktop']) && $res['css_desktop'] != '') $this->desktop = $res['css_desktop'];
+			if (isset($res['css_mobile']) && $res['css_mobile'] != '') $this->mobile = $res['css_mobile'];
+		}
 
+		// [emkort name="xx"] [emkort name="xx,yy"] [emkort kort="abc"] 
 		add_shortcode('emkort', array($this, 'shortcode'));
 
+		// [embestill name=""]
 		add_shortcode('embestill', array($this, 'shortcode_bestill'));
+		
+		// [embilde name=""]
 		add_shortcode('embilde', array($this, 'shortcode_bilde'));
 
+		// filter for theme search
 		add_action('emkort_shortcode', array($this, 'emkort_shortcode'));
+
+		// adding preload links
 		add_action('wp_head', array($this, 'head'));
 	}
 
@@ -38,72 +57,31 @@ final class Emkk_shortcode {
 		adds preload sprite to head
 	*/
 	public function head() {
+		echo '<link rel="preload" href="'.esc_url($this->sprite).'" as="image">';
+		echo '<link rel="preload" href="'.esc_url($this->desktop).'" as="css">';
+		echo '<link rel="preload" href="'.esc_url($this->mobile).'" as="css">';
 
-		$resources = get_option('emkk_settings');
-
-		if (isset($resources['css_disable']) && $resources['css_disable']) {
-		 	echo '<style>.em-sprite { background-image: url("'.PLUGIN_URL.'assets/img/spritesheet_1.jpg"); }</style>';
-		 	return;
-		}
-			
-
-		// external 
-		if (isset($resources['css_sprite'])) {
-			echo '<link rel="preload" href="'.esc_url($resources['css_sprite']).'" as="image">';
-			echo '<style>.em-sprite { background-image: url("'.esc_html($resources['css_sprite']).'"); }</style>';
-		}
-		else echo '<style>.em-sprite { background-image: url("'.PLUGIN_URL.'assets/img/spritesheet_1.jpg"); }</style>';
-
-		if (isset($resources['css_desktop']) && $resources['css_desktop'] != '') 
-			echo '<link rel="preload" href="'.esc_url($resources['css_desktop']).'" as="css">';
-
-		if (isset($resources['css_mobile']) && $resources['css_mobile'] != '') 
-			echo '<link rel="preload" href="'.esc_url($resources['css_mobile']).'" as="css">';
-
-		if (isset($resources['css_tablet']) && $resources['css_tablet'] != '') 
-			echo '<link rel="preload" href="'.esc_url($resources['css_tablet']).'" as="css">';
-
-
-		// internal
-		// else echo '<style>.em-sprite { background-image: url("../img/spritesheet_1.jpg"); }</style>';
+		echo '<style>.em-sprite { background-image: url("'.esc_html($this->sprite).'") }</style>';
 	}
 
 	/*
 		adds css by script 
 	*/
 	public function footer() {
-		$resources = get_option('emkk_settings');
-
-		// default values
-		$css_desktop = PLUGIN_URL.'assets/css/emkk_style.css';
-		$css_mobile = PLUGIN_URL.'assets/css/emkk_style_mobile.css';
-		$css_tablet = PLUGIN_URL.'assets/css/emkk_style_tablet.css';
-
-		if (! $resources['css_disable']) {
-			if (isset($resources['css_desktop']) && $resources['css_desktop'] != '') $css_desktop = esc_url($resources['css_desktop']);
-			if (isset($resources['css_mobile']) && $resources['css_mobile'] != '') $css_mobile = esc_url($resources['css_mobile']);
-			if (isset($resources['css_tablet']) && $resources['css_tablet'] != '') $css_tablet = esc_url($resources['css_tablet']);
-		}
-
 		echo '<script defer>
 				(function() {
 					var o = document.createElement("link");
 					o.setAttribute("rel", "stylesheet");
-					o.setAttribute("href", "'.esc_html($css_desktop).'");
+					o.setAttribute("href", "'.esc_html($this->desktop).'");
 					o.setAttribute("media", "(min-width: 1025px)");
 					document.head.appendChild(o);
 
 					var m = document.createElement("link");
 					m.setAttribute("rel", "stylesheet");
-					m.setAttribute("href", "'.esc_html($css_mobile).'");
+					m.setAttribute("href", "'.esc_html($this->mobile).'");
 					m.setAttribute("media", "(max-width: 1024px)");
 					document.head.appendChild(m);
 
-					var t = document.createElement("link");
-					t.setAttribute("rel", "stylesheet");
-					t.setAttribute("href", "'.esc_html($css_tablet).'");
-					t.setAttribute("media", "(min-width: 481px) and (max-width: 1024px)");
-					document.head.appendChild(t);
 				})();
 			  </script>';
 	}
@@ -124,8 +102,10 @@ final class Emkk_shortcode {
 	public function shortcode_bestill($atts, $content = null) {
 		$this->add_css();
 
+		// if name attr is not set
 		if (! isset($atts['name'])) return;
 
+		// getting meta ('ignore' is the tax to ignore)
 		$meta = $this->get_meta($atts['name'], 'em_sokna', 'ignore');
 
 		if ($meta) return '<div class="emkort-sokna" style="width: 20rem"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($meta).'">Bestill Kortet</a></div>';
@@ -191,7 +171,7 @@ final class Emkk_shortcode {
 				);
 
 		// if $name is not null
-		if (is_array($name)) 	$args['post_name__in'] = $name; 
+		if (is_array($name)) $args['post_name__in'] = $name; 
 
 		$query = new WP_Query($args);
 
@@ -215,6 +195,8 @@ final class Emkk_shortcode {
 			while ($query->have_posts()) {
 				$query->the_post();
 
+				$logo = [];
+
 				// to ignore "ignore" and/or "duplicate" taxonomies
 				$terms = wp_get_post_terms($post->ID, 'korttype');
 				$ignore = false;
@@ -222,6 +204,9 @@ final class Emkk_shortcode {
 					if ($term->slug == 'ignore') 		$ignore = true; // ignore all with ignore tag
 					elseif ($term->slug == 'duplicate' 
 						&& !$name && !$kort) 			$ignore = true; // ignore all with duplicate tag and name/kort att not used
+				
+					elseif ($term->slug == 'visa'
+						|| $term->slug == 'mastercard') array_push($logo, $term->slug);
 				}
 
 				if ($ignore) continue;
@@ -231,6 +216,8 @@ final class Emkk_shortcode {
 
 				if (isset($meta[0])) 	$meta = $meta[0];
 				else 					continue; // if no meta, then no card
+
+				$meta['logo'] = $logo;
 
 				// adding the meta
 				$html .= $this->make_kredittkort($meta);
@@ -256,17 +243,17 @@ final class Emkk_shortcode {
 		else 												$title = get_the_title();
 
 		$thumbnail = get_the_post_thumbnail_url($post, 'full');
-		$lesmer = isset($meta['em_lesmer']) ? $this->filter_bb($meta['em_lesmer']) : '';
-		$infoEn = isset($meta['em_info'][0]) ? $this->filter_bb($meta['em_info'][0]) : '';
-		$infoTo = isset($meta['em_info'][1]) ? $this->filter_bb($meta['em_info'][1]) : '';
-		$infoTre = isset($meta['em_info'][2]) ? $this->filter_bb($meta['em_info'][2]) : '';
-		$blurb = isset($meta['em_blurb']) ? $this->filter_bb($meta['em_blurb']) : '';
-		$age = isset($meta['em_aldersgrense']) ? $this->filter_bb($meta['em_aldersgrense']) : '';
-		$ageOw = isset($meta['em_alderow']) ? $this->filter_bb($meta['em_alderow']) : '';
-		$mkreditt = isset($meta['em_makskreditt']) ? $this->filter_bb($meta['em_makskreditt']) : '';
-		$rfkreditt = isset($meta['em_rentefrikreditt']) ? $this->filter_bb($meta['em_rentefrikreditt']) : '';
-		$sokna = isset($meta['em_sokna']) ? $this->filter_bb($meta['em_sokna']) : '';
-		$effrente = isset($meta['em_effrente']) ? $this->filter_bb($meta['em_effrente']) : '';
+		$lesmer = isset($meta['em_lesmer']) ? $meta['em_lesmer'] : '';
+		$infoEn = isset($meta['em_info'][0]) ? $meta['em_info'][0] : '';
+		$infoTo = isset($meta['em_info'][1]) ? $meta['em_info'][1] : '';
+		$infoTre = isset($meta['em_info'][2]) ? $meta['em_info'][2] : '';
+		$blurb = isset($meta['em_blurb']) ? $meta['em_blurb'] : '';
+		$age = isset($meta['em_aldersgrense']) ? $meta['em_aldersgrense'] : '';
+		$ageOw = isset($meta['em_alderow']) ? $meta['em_alderow'] : '';
+		$mkreditt = isset($meta['em_makskreditt']) ? $meta['em_makskreditt'] : '';
+		$rfkreditt = isset($meta['em_rentefrikreditt']) ? $meta['em_rentefrikreditt'] : '';
+		$sokna = isset($meta['em_sokna']) ? $meta['em_sokna'] : '';
+		$effrente = isset($meta['em_effrente']) ? $meta['em_effrente'] : '';
 		$sprite = isset($meta['em_sprite']) ? $meta['em_sprite'] : '';
 
 		$html = '<div class="emkort-container">'; // add class here
@@ -274,32 +261,32 @@ final class Emkk_shortcode {
 		// add check for mobile here?
 		for ($i = 1; $i <= 6; $i++) $html .= '<div class="emkort-sep emkort-sep-'.$i.'"></div>';
 			
-		$html .= '<div class="emkort-title"><h2 class="emkort-title-header"><a class="emkort-title-text" href="'.esc_url($lesmer).'">'.esc_html($title).'</a></h2></div>';
+		$html .= '<div class="emkort-title"><h2 class="emkort-title-header"><a class="emkort-title-text" href="'.$this->filter_bb(esc_url($lesmer)).'">'.esc_html($title).'</a></h2></div>';
 	
 		if ($sprite) 		$html .= '<div class="emkort-thumbnail em-sprite sprite-'.esc_attr($sprite).'"></div>';
-		elseif ($thumbnail) $html .= '<div class="emkort-thumbnail"><img class="emkort-thumbnail-image" src="'.esc_url($thumbnail).'"></div>';
+		elseif ($thumbnail) $html .= '<div class="emkort-thumbnail"><img class="emkort-thumbnail-image" src="'.$this->filter_bb(esc_url($thumbnail)).'"></div>';
 		else 				$html .= '<div class="emkort-thumbnail"></div>';
 
-		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.esc_url($lesmer).'">Les Mer</a></div>';
+		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
 		
-		if ($infoEn) $html .= '<div class="emkort-info-0 emkort-info">'.esc_html($infoEn).'</div>';
+		if ($infoEn) $html .= '<div class="emkort-info-0 emkort-info">'.$this->filter_bb(esc_html($infoEn)).'</div>';
 
-		if ($infoTo) $html .= '<div class="emkort-info-1 emkort-info">'.esc_html($infoTo).'</div>';
+		if ($infoTo) $html .= '<div class="emkort-info-1 emkort-info">'.$this->filter_bb(esc_html($infoTo)).'</div>';
 
-		if ($infoTre) $html .= '<div class="emkort-info-2 emkort-info">'.esc_html($infoTre).'</div>';
+		if ($infoTre) $html .= '<div class="emkort-info-2 emkort-info">'.$this->filter_bb(esc_html($infoTre)).'</div>';
 		
-		$html .= '<div class="emkort-blurb">'.esc_html($blurb).'</div>';
+		$html .= '<div class="emkort-blurb">'.$this->filter_bb(esc_html($blurb)).'</div>';
 		
-		if ($ageOw)	$html .= '<div class="emkort-alderow">'.esc_html($ageOw).'</div>';
-		else $html .= '<div class="emkort-aldersgrense">'.esc_html($age).'</div>';
+		if ($ageOw)	$html .= '<div class="emkort-alderow">'.$this->filter_bb(esc_html($ageOw)).'</div>';
+		else $html .= '<div class="emkort-aldersgrense">'.$this->filter_bb(esc_html($age)).'</div>';
 
-		$html .= '<div class="emkort-makskreditt">'.esc_html($mkreditt).'</div>';
+		$html .= '<div class="emkort-makskreditt">'.$this->filter_bb(esc_html($mkreditt)).'</div>';
 		
-		$html .= '<div class="emkort-rentefrikreditt">'.esc_html($rfkreditt).'</div>';
+		$html .= '<div class="emkort-rentefrikreditt">'.$this->filter_bb(esc_html($rfkreditt)).'</div>';
 		
 		$html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
 		
-		$html .= '<div class="emkort-effrente">'.esc_html($effrente).'</div>';
+		$html .= '<div class="emkort-effrente">'.$this->filter_bb(esc_html($effrente)).'</div>';
 
 		$html .= '</div>';
 

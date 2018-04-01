@@ -38,7 +38,7 @@ final class Emkk_settings {
 		add_settings_field('emkk_css_sprite', 'Sprite Image', array($this, 'css_sprite'), 'emkk_settings_page', 'emkk_settings_field');
 		add_settings_field('emkk_css_desktop', 'CSS Desktop', array($this, 'css_desktop'), 'emkk_settings_page', 'emkk_settings_field');
 		add_settings_field('emkk_css_mobile', 'CSS Mobile', array($this, 'css_mobile'), 'emkk_settings_page', 'emkk_settings_field');
-		add_settings_field('emkk_css_tablet', 'CSS Tablet', array($this, 'css_tablet'), 'emkk_settings_page', 'emkk_settings_field');
+		// add_settings_field('emkk_css_tablet', 'CSS Tablet', array($this, 'css_tablet'), 'emkk_settings_page', 'emkk_settings_field');
 	}
 
 	public function settings_field() {
@@ -61,10 +61,13 @@ final class Emkk_settings {
 		echo '<input type="url" style="width: 500px" name="emkk_settings[css_mobile]" value="'.$this->get_setting('css_mobile').'">';
 	}
 
-	public function css_tablet() {
-		echo '<input type="url" style="width: 500px" name="emkk_settings[css_tablet]" value="'.$this->get_setting('css_tablet').'">';
-	}
+	// public function css_tablet() {
+	// 	echo '<input type="url" style="width: 500px" name="emkk_settings[css_tablet]" value="'.$this->get_setting('css_tablet').'">';
+	// }
 
+	/*
+		echos the page
+	*/
 	public function menu_callback() {
 		echo '<h1>EM Kredittkort Plugin</h1>';
 		echo '<form action="options.php" method="POST">';
@@ -74,6 +77,9 @@ final class Emkk_settings {
 		echo '</form>';
 	}
 
+	/*
+		sanitizing data to be saved
+	*/
 	public function sanitize($data) {
 		if (!is_array($data)) return esc_url($data);
 
@@ -84,6 +90,10 @@ final class Emkk_settings {
 		return $d;
 	}
 
+	/*
+		retrieves data from settings array in database
+		and sanitizes it for use as html attribute
+	*/
 	private function get_setting($name) {
 		$opt = get_option('emkk_settings');
 		if (isset($opt[$name])) return esc_attr($opt[$name]);
