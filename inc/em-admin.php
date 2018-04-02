@@ -2,10 +2,10 @@
 
 defined( 'ABSPATH' ) or die( 'Blank Space' );
 
-require_once 'posttype.php';
-require_once 'customizer.php';
-require_once 'settings.php';
-require_once 'info.php';
+require_once 'em-posttype.php';
+require_once 'em-customizer.php';
+require_once 'em-settings.php';
+require_once 'em-info.php';
 
 /*
 	ADMIN SIDE STUFF

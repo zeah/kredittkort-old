@@ -2,7 +2,7 @@
 
 defined( 'ABSPATH' ) or die( 'Blank Space' );
 
-require_once 'taxonomy.php';
+require_once 'em-taxonomy.php';
 
 /*
 	FRONT-END STUFF

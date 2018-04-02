@@ -2,8 +2,8 @@
 
 defined( 'ABSPATH' ) or die( 'Blank Space' );
 
-require_once 'taxonomy.php';
-require_once 'emkortedit.php';
+require_once 'em-taxonomy.php';
+require_once 'em-edit.php';
 
 /*
 	REGISTERING CUSTOM POST TYPE
