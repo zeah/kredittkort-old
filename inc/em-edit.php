@@ -49,8 +49,8 @@ final class Emkk_edit {
 		$screen = get_current_screen();
 
 		if ($screen->id == 'edit-emkort') {
-			wp_enqueue_script('emkk_kredittkort_admin', PLUGIN_URL . '/assets/js/emkk_kredittkort_admin.js', array(), false, true);
-			wp_enqueue_style('emkk_kredittkort_admin_style', PLUGIN_URL . '/assets/css/emkk_kredittkort_admin.css', array(), false);
+			wp_enqueue_script('emkk_kredittkort_admin', EM_PLUGIN_URL . '/assets/js/emkk_kredittkort_admin.js', array(), false, true);
+			wp_enqueue_style('emkk_kredittkort_admin_style', EM_PLUGIN_URL . '/assets/css/emkk_kredittkort_admin.css', array(), false);
 		}
 	}
 
@@ -107,9 +107,9 @@ final class Emkk_edit {
 		// name of bank etc
 
 		// javascript for creating content in metaboxes
-		wp_enqueue_style('emkk_style', PLUGIN_URL . '/assets/css/emkk_style.css', array(), false);
-		wp_enqueue_script('emkk_emkort_meta', PLUGIN_URL . '/assets/js/emkk_emkort_meta.js', array(), false, true);
-		wp_enqueue_style('emkk_meta_style', PLUGIN_URL . '/assets/css/emkk_meta_style.css', array(), false);
+		wp_enqueue_style('emkk_style', EM_PLUGIN_URL . '/assets/css/emkk_style.css', array(), false);
+		wp_enqueue_script('emkk_emkort_meta', EM_PLUGIN_URL . '/assets/js/emkk_emkort_meta.js', array(), false, true);
+		wp_enqueue_style('emkk_meta_style', EM_PLUGIN_URL . '/assets/css/emkk_meta_style.css', array(), false);
 	}
 
 	/*
@@ -142,23 +142,23 @@ final class Emkk_edit {
 		returns meta values from sort . taxonomy
 		@returns array [sort_taxonomy] => [value]
 	*/
-	private function get_sort($post) {
-		// retrieving taxonomy
-		$tax = wp_get_post_terms($post->ID, 'korttype');
+	// private function get_sort($post) {
+	// 	// retrieving taxonomy
+	// 	$tax = wp_get_post_terms($post->ID, 'korttype');
 		
-		// getting meta
-		$sort = [];
-		foreach($tax as $value) {
-			$meta = get_post_meta($post->ID, 'emkort_sort_'.str_replace(' ', '_', $value->name));
-			$sort[$value->name] = isset($meta[0]) ? $meta[0] : '';
-		}
+	// 	// getting meta
+	// 	$sort = [];
+	// 	foreach($tax as $value) {
+	// 		$meta = get_post_meta($post->ID, 'emkort_sort_'.str_replace(' ', '_', $value->name));
+	// 		$sort[$value->name] = isset($meta[0]) ? $meta[0] : '';
+	// 	}
 
-		// getting non-taxonomy meta
-		$meta = get_post_meta($post->ID, 'emkort_sort');
-		$sort['default'] = isset($meta[0]) ? $meta[0] : '';
+	// 	// getting non-taxonomy meta
+	// 	$meta = get_post_meta($post->ID, 'emkort_sort');
+	// 	$sort['default'] = isset($meta[0]) ? $meta[0] : '';
 
-		return $sort;
-	}
+	// 	return $sort;
+	// }
 
 	public function save($post_id) {
 		// post type is emkort

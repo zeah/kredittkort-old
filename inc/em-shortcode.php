@@ -15,9 +15,9 @@ final class Emkk_shortcode {
 	private $added_js = false;
 
 	// internal resources
-	private $sprite = PLUGIN_URL.'assets/img/spritesheet_1.jpg';
-	private $desktop = PLUGIN_URL.'assets/css/emkk_style.css';
-	private $mobile = PLUGIN_URL.'assets/css/emkk_style_mobile.css';
+	private $sprite = EM_PLUGIN_URL.'assets/img/spritesheet_1.jpg';
+	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css';
+	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();

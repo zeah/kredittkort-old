@@ -25,7 +25,7 @@ final class Emkk_info {
 		$screen = get_current_screen();
 
 		if ($screen->id == 'emkort_page_emkort_info') {
-			wp_enqueue_style('emkk_admin_info', PLUGIN_URL . '/assets/css/emkk_admin_info.css', array(), false);
+			wp_enqueue_style('emkk_admin_info', EM_PLUGIN_URL . '/assets/css/emkk_admin_info.css', array(), false);
 		}
 	}
 

@@ -8,7 +8,7 @@
 
 defined( 'ABSPATH' ) or die(' Blank Space' );
 
-define( 'PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'EM_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
 require_once 'inc/em-admin.php';
 require_once 'inc/em-shortcode.php';
