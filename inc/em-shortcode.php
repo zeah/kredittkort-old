@@ -37,6 +37,8 @@ final class Emkk_shortcode {
 			if (isset($res['css_mobile']) && $res['css_mobile'] != '') $this->mobile = $res['css_mobile'];
 		}
 
+        add_filter('pre_get_posts', array($this, 'set_search'), 99);
+
 		// [emkort name="xx"] [emkort name="xx,yy"] [emkort kort="abc"] 
 		add_shortcode('emkort', array($this, 'shortcode'));
 
@@ -51,6 +53,16 @@ final class Emkk_shortcode {
 
 		// adding preload links
 		add_action('wp_head', array($this, 'head'));
+	}
+
+	/*
+		adds emkort custom post to search
+	*/
+	public function set_search($query) {
+        if ($query->is_search) {
+	        if (!$query->get('post_type')) $query->set('post_type', array('page', 'post', 'emkort'));
+    	    else $query->set('post_type', array_merge(array('emkort'), $query->get('post_type')));
+		}
 	}
 
 	/*
