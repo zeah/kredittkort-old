@@ -69,7 +69,7 @@ final class Emkk_shortcode {
 		adds preload sprite to head
 	*/
 	public function head() {
-		echo '<link rel="preload" href="'.esc_url($this->sprite).'" as="image">';
+		echo '<link rel="preload" href="'.esc_url($this->sprite).'">';
 		echo '<link rel="preload" href="'.esc_url($this->desktop).'" as="css">';
 		echo '<link rel="preload" href="'.esc_url($this->mobile).'" as="css">';
 
