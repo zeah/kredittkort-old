@@ -48,15 +48,15 @@ final class Emkk_taxonomy {
 	
 		$args = array(
 			'labels'            => $labels,
-			'public'            => false,
+			'public'            => true,
 			'show_in_nav_menus' => false,
 			'show_admin_column' => true,
 			'hierarchical'      => true,
-			'show_tagcloud'     => true,
-			'show_ui'           => true,
-			'query_var'         => false,
+			// 'show_tagcloud'     => true,
+			// 'show_ui'           => true,
+			// 'query_var'         => false,
 			'rewrite'           => false,
-			'query_var'         => false,
+			// 'query_var'         => false,
 			'capabilities'      => array(),
 		);
 	

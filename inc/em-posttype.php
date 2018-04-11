@@ -56,7 +56,7 @@ final class Emkk_posttype {
 			'labels'              => $labels,
 			'hierarchical'        => false,
 			'description'         => 'description',
-			'taxonomies'          => array(),
+			'taxonomies'          => array('korttype'),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
