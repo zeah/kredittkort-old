@@ -38,6 +38,7 @@ final class Emkk_shortcode {
 		}
 
         add_filter('pre_get_posts', array($this, 'set_search'), 99);
+        // add_filter('add_google_fonts', array($this, 'add_google_fonts'), 99);
 
 		// [emkort name="xx"] [emkort name="xx,yy"] [emkort kort="abc"] 
 		add_shortcode('emkort', array($this, 'shortcode'));
