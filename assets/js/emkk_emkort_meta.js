@@ -171,10 +171,11 @@
 
 // CSS SPRITE SETTINGS
 (() => {
-	let set = new Set(['', '365privat', 'Aros_Finans', 'Circle_K_MasterCard', 'bank_norwegian', 'credits_visa',
-		'flexi_visa', 'ikano_visa', 'komplett_kredittkort', 'remember_black_card', 'santander_gold', 'santander_manu',
-		'santander_red', 'sas_amex_classic', 'yx_visa_bensinkort']);
-	
+	let set = new Set(['', 'shell_mastercard', '365privat', 'sas_eurobonus', 'ya_bank', 
+						   'bank_norwegian', 'credits_visa', 'aros_finans', 'remember_black',
+						   'santander_gold', 'santander_manu', 'santander_flexi', 'komplett_mastercard',
+						   'ikano_bank', 'circle_k', 'yx_visa', 'santander_red']);
+
 	let meta = emkk_meta.meta.em_sprite;
 	let cImage = meta;
 

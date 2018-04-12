@@ -15,7 +15,9 @@ final class Emkk_shortcode {
 	private $added_js = false;
 
 	// internal resources
-	private $sprite = EM_PLUGIN_URL.'assets/img/spritesheet_1.jpg';
+	// private $sprite = EM_PLUGIN_URL.'assets/img/spritesheet_1.jpg';
+	private $sprite = EM_PLUGIN_URL.'assets/img/css_sprites-min.png';
+	// private $sprite = '';
 	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css';
 	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css';
 
@@ -280,15 +282,12 @@ final class Emkk_shortcode {
 		elseif ($thumbnail) $html .= '<div class="emkort-thumbnail"><img class="emkort-thumbnail-image" src="'.$this->filter_bb(esc_url($thumbnail)).'"></div>';
 		else 				$html .= '<div class="emkort-thumbnail"></div>';
 
-		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
 		
 		if ($infoEn) $html .= '<div class="emkort-info-0 emkort-info">'.$this->filter_bb(esc_html($infoEn)).'</div>';
 
 		if ($infoTo) $html .= '<div class="emkort-info-1 emkort-info">'.$this->filter_bb(esc_html($infoTo)).'</div>';
 
 		if ($infoTre) $html .= '<div class="emkort-info-2 emkort-info">'.$this->filter_bb(esc_html($infoTre)).'</div>';
-		
-		$html .= '<div class="emkort-blurb">'.$this->filter_bb(esc_html($blurb)).'</div>';
 		
 		if ($ageOw)	$html .= '<div class="emkort-alderow">'.$this->filter_bb(esc_html($ageOw)).'</div>';
 		else $html .= '<div class="emkort-aldersgrense">'.$this->filter_bb(esc_html($age)).'</div>';
@@ -297,10 +296,33 @@ final class Emkk_shortcode {
 		
 		$html .= '<div class="emkort-rentefrikreditt">'.$this->filter_bb(esc_html($rfkreditt)).'</div>';
 		
+		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
+		
 		$html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
 		
 		$html .= '<div class="emkort-effrente">'.$this->filter_bb(esc_html($effrente)).'</div>';
 
+		// blurb and logos
+		$html .= '<div class="emkort-blurb"><div class="emkort-blurb-text">'.$this->filter_bb(esc_html($blurb)).'</div>';
+
+
+		$terms = wp_get_post_terms($post->ID, 'korttype');
+
+		$html .= '<div class="emkort-logo-container">';
+		foreach($terms as $term) {
+			if ($term->slug == 'visa')
+				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/visa_logo.png">';
+				// $html .= '<span class="em-sprite sprite-visa_logo"></span>';
+			elseif ($term->slug == 'mastercard')
+				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/mastercard_logo.png">';
+				// $html .= '<span class="em-sprite sprite-mastercard_logo"></span>';
+		}
+		$html .= '</div>';
+
+		// $html .= '<div class="emkort-logo">'.print_r($terms, true).'</div>';
+
+		$html .= '</div>';
+		
 		$html .= '</div>';
 
 		return $html;

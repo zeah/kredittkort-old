@@ -3,7 +3,7 @@
 /**
 	Plugin Name: EM-kredittkort
 	Description: kredittkortliste for effektiv markedsforing
-	Version: 1.0.1
+	Version: 1.0.3
 */
 
 defined( 'ABSPATH' ) or die(' Blank Space' );

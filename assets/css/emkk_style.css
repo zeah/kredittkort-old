@@ -240,7 +240,7 @@ p:empty {
 }
 .emkort-logo-container {
 	position: relative;
-	top: 0.8rem;
+	top: 0.3rem;
 	right: 0.8rem;
 }
 
@@ -510,13 +510,116 @@ p:empty {
     justify-self: center;
 }
 
+.sprite-shell_mastercard {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -4px;
+}
+
 .sprite-365privat {
     width: 200px;
     height: 126px;
-    background-position: -5px -5px;
+    background-position: -212px -4px;
 }
 
-.sprite-Aros_Finans {
+.sprite-sas_eurobonus {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -4px;
+}
+
+.sprite-ya_bank {
+    width: 200px;
+    height: 126px;
+    background-position: -628px -4px;
+}
+
+.sprite-bank_norwegian {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -138px;
+}
+
+.sprite-credits_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -212px -138px;
+}
+
+.sprite-aros_finans {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -138px;
+}
+
+.sprite-remember_black {
+    width: 200px;
+    height: 126px;
+    background-position: -628px -138px;
+}
+
+.sprite-santander_gold {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -272px;
+}
+
+.sprite-santander_manu {
+    width: 200px;
+    height: 126px;
+    background-position: -212px -272px;
+}
+
+.sprite-santander_flexi {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -272px;
+}
+
+.sprite-komplett_mastercard {
+    width: 200px;
+    height: 126px;
+    background-position: -628px -272px;
+}
+
+.sprite-ikano_bank {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -406px;
+}
+
+.sprite-circle_k {
+    width: 200px;
+    height: 126px;
+    background-position: -212px -406px;
+}
+
+.sprite-yx_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -406px;
+}
+
+.sprite-santander_red {
+    width: 200px;
+    height: 126px;
+    background-position: -628px -406px;
+}
+
+.sprite-mastercard_logo {
+    width: 74px;
+    height: 20px;
+    background-position: -12px -539px;
+}
+
+.sprite-visa_logo {
+    width: 32px;
+    height: 20px;
+    background-position: -100px -539px;
+}
+
+
+/*.sprite-Aros_Finans {
     width: 200px;
     height: 126px;
     background-position: -215px -5px;
@@ -531,7 +634,7 @@ p:empty {
 .sprite-bank_norwegian {
     width: 200px;
     height: 126px;
-    background-position: -5px -141px;
+    background-position: -4px -137px;
 }
 
 .sprite-credits_visa {
@@ -549,7 +652,7 @@ p:empty {
 .sprite-ikano_visa {
     width: 200px;
     height: 126px;
-    background-position: -5px -277px;
+    background-position: -4px -406px;
 }
 
 .sprite-komplett_kredittkort {
@@ -561,7 +664,7 @@ p:empty {
 .sprite-remember_black_card {
     width: 200px;
     height: 126px;
-    background-position: -425px -277px;
+    background-position: -628px -137px;
 }
 
 .sprite-santander_gold {
@@ -579,7 +682,7 @@ p:empty {
 .sprite-santander_red {
     width: 200px;
     height: 126px;
-    background-position: -425px -413px;
+    background-position: -628px -406px;
 }
 
 .sprite-sas_amex_classic {
@@ -592,4 +695,4 @@ p:empty {
     width: 200px;
     height: 126px;
     background-position: -635px -141px;
-}
+}*/

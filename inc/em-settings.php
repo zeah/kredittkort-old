@@ -6,8 +6,7 @@ final class Emkk_settings {
 	private static $instance = null;
 
 	public static function get_instance() {
-		if (self::$instance === null)
-			self::$instance = new self();
+		if (self::$instance === null) self::$instance = new self();
 
 		return self::$instance;
 	}
@@ -24,10 +23,7 @@ final class Emkk_settings {
 	}
 
 	public function settings() {
-		$args = [ 
-			// 'type' => 'string',
-			'sanitize_callback' => array($this, 'sanitize') 
-		];
+		// $args = ['sanitize_callback' => array($this, 'sanitize')];
 
 		register_setting('emkk_settings_group', 'emkk_settings', ['sanitize_callback' => array($this, 'sanitize')]);
 	}

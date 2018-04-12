@@ -10,9 +10,11 @@
 		H2
 		ANCHOR
 
+	IMAGE SPRITE
+
 */
 html {
-	/*font-size: 62.5%;*/
+	font-size: 62.5%;
 }
 
 /*
@@ -35,12 +37,11 @@ html {
 	list-style: none;
 	margin-bottom: 3rem;
 
+	padding-bottom: 0.5rem;
 	background-color: #f2f2f2;
-	/*background-color: #efdeef;*/
 }
 .emkort-container:nth-child(odd) {
 	background-color: #e6e6e6;
-	/*background-color: #deefef;*/
 }
 
 /*	TITLE
@@ -64,6 +65,7 @@ html {
 .emkort-thumbnail {
 	text-align: center;
 	/*height: 17rem;*/
+	zoom: 1.5;
 }
 .emkort-thumbnail-image {
 	/*width: 70%;*/
@@ -158,9 +160,6 @@ html {
 	content: 'Aldersgrense';
 }
 
-/*.emkort-rentefrikreditt {
-	text-align: center;
-}*/
 .emkort-rentefrikreditt:before {
 	content: 'Rentefri Kreditt';
 }
@@ -171,25 +170,14 @@ html {
 	font-style: italic;
 }
 
-.emkort-blurb {
-	text-align: center;
-	padding-bottom: 2rem;
+.emkort-blurb-text {
+	display: none;
 }
 
 
 .emkort-logo-container {
-	display: inline-block;
-	position: relative;
-	top: 1rem;
+	text-align: center;
 }
-
-
-
-
-
-
-
-
 
 
 @media screen and (min-width: 481px) and (max-width: 1024px) {
@@ -222,101 +210,118 @@ html {
 }
 
 
-
-
-
-
+/* IMAGE SPRITE */
 .em-sprite {
     display: block;
-    /*background-image: url(../img/spritesheet.png);*/
-    /*background-image: url(../img/spritesheet_1.jpg);*/
     background-repeat: no-repeat;
     justify-self: center;
     border-radius: 8px;
     margin: auto;
-    /*text-align: center;*/
+}
+.sprite-shell_mastercard {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -4px;
 }
 
 .sprite-365privat {
     width: 200px;
     height: 126px;
-    background-position: -5px -5px;
+    background-position: -212px -4px;
 }
 
-.sprite-Aros_Finans {
+.sprite-sas_eurobonus {
     width: 200px;
     height: 126px;
-    background-position: -215px -5px;
+    background-position: -420px -4px;
 }
 
-.sprite-Circle_K_MasterCard {
+.sprite-ya_bank {
     width: 200px;
     height: 126px;
-    background-position: -425px -5px;
+    background-position: -628px -4px;
 }
 
 .sprite-bank_norwegian {
     width: 200px;
     height: 126px;
-    background-position: -5px -141px;
+    background-position: -4px -138px;
 }
 
 .sprite-credits_visa {
     width: 200px;
     height: 126px;
-    background-position: -215px -141px;
+    background-position: -212px -138px;
 }
 
-.sprite-flexi_visa {
+.sprite-aros_finans {
     width: 200px;
     height: 126px;
-    background-position: -425px -141px;
+    background-position: -420px -138px;
 }
 
-.sprite-ikano_visa {
+.sprite-remember_black {
     width: 200px;
     height: 126px;
-    background-position: -5px -277px;
-}
-
-.sprite-komplett_kredittkort {
-    width: 200px;
-    height: 126px;
-    background-position: -215px -277px;
-}
-
-.sprite-remember_black_card {
-    width: 200px;
-    height: 126px;
-    background-position: -425px -277px;
+    background-position: -628px -138px;
 }
 
 .sprite-santander_gold {
     width: 200px;
     height: 126px;
-    background-position: -5px -413px;
+    background-position: -4px -272px;
 }
 
 .sprite-santander_manu {
     width: 200px;
     height: 126px;
-    background-position: -215px -413px;
+    background-position: -212px -272px;
+}
+
+.sprite-santander_flexi {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -272px;
+}
+
+.sprite-komplett_mastercard {
+    width: 200px;
+    height: 126px;
+    background-position: -628px -272px;
+}
+
+.sprite-ikano_bank {
+    width: 200px;
+    height: 126px;
+    background-position: -4px -406px;
+}
+
+.sprite-circle_k {
+    width: 200px;
+    height: 126px;
+    background-position: -212px -406px;
+}
+
+.sprite-yx_visa {
+    width: 200px;
+    height: 126px;
+    background-position: -420px -406px;
 }
 
 .sprite-santander_red {
     width: 200px;
     height: 126px;
-    background-position: -425px -413px;
+    background-position: -628px -406px;
 }
 
-.sprite-sas_amex_classic {
-    width: 200px;
-    height: 126px;
-    background-position: -635px -5px;
+.sprite-mastercard_logo {
+    width: 74px;
+    height: 20px;
+    background-position: -12px -539px;
 }
 
-.sprite-yx_visa_bensinkort {
-    width: 200px;
-    height: 126px;
-    background-position: -635px -141px;
+.sprite-visa_logo {
+    width: 32px;
+    height: 20px;
+    background-position: -100px -539px;
 }
