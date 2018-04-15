@@ -288,6 +288,9 @@ final class Emkk_shortcode {
 		if ($infoTo) $html .= '<div class="emkort-info-1 emkort-info">'.$this->filter_bb(esc_html($infoTo)).'</div>';
 
 		if ($infoTre) $html .= '<div class="emkort-info-2 emkort-info">'.$this->filter_bb(esc_html($infoTre)).'</div>';
+
+		$html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
+		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
 		
 		if ($ageOw)	$html .= '<div class="emkort-alderow">'.$this->filter_bb(esc_html($ageOw)).'</div>';
 		else $html .= '<div class="emkort-aldersgrense">'.$this->filter_bb(esc_html($age)).'</div>';
@@ -296,9 +299,7 @@ final class Emkk_shortcode {
 		
 		$html .= '<div class="emkort-rentefrikreditt">'.$this->filter_bb(esc_html($rfkreditt)).'</div>';
 		
-		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
 		
-		$html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
 		
 		$html .= '<div class="emkort-effrente">'.$this->filter_bb(esc_html($effrente)).'</div>';
 
