@@ -464,7 +464,7 @@ p:empty {
 }
 
 /* DESKTOP SAFARI VERSION 9 - 9.1 - 10 */
-@supports not (display: grid) {
+@supports not (display: grid) and not (display: -ms-grid) {
 	.emkort-kortliste {
 		display: flex;
 		flex-wrap: wrap;
@@ -485,7 +485,7 @@ p:empty {
 		height: auto;
 		position: initial;
 
-		margin: 1rem 0;
+		margin: 2rem 0;
 	}
 
 	.emkort-lesmer {
@@ -505,6 +505,16 @@ p:empty {
 		width: 25%;
 		padding: 0;
 		font-size: 1.2rem;
+	}
+
+	.emkort-effrente {
+		margin: 2rem 0;
+	}
+
+	.emkort-blurb {
+		margin: auto;
+		padding: 0;
+		width: 10rem;
 	}
 
 	.emkort-sep {
@@ -626,82 +636,3 @@ p:empty {
     height: 20px;
     background-position: -100px -539px;
 }
-
-
-/*.sprite-Aros_Finans {
-    width: 200px;
-    height: 126px;
-    background-position: -215px -5px;
-}
-
-.sprite-Circle_K_MasterCard {
-    width: 200px;
-    height: 126px;
-    background-position: -425px -5px;
-}
-
-.sprite-bank_norwegian {
-    width: 200px;
-    height: 126px;
-    background-position: -4px -137px;
-}
-
-.sprite-credits_visa {
-    width: 200px;
-    height: 126px;
-    background-position: -215px -141px;
-}
-
-.sprite-flexi_visa {
-    width: 200px;
-    height: 126px;
-    background-position: -425px -141px;
-}
-
-.sprite-ikano_visa {
-    width: 200px;
-    height: 126px;
-    background-position: -4px -406px;
-}
-
-.sprite-komplett_kredittkort {
-    width: 200px;
-    height: 126px;
-    background-position: -215px -277px;
-}
-
-.sprite-remember_black_card {
-    width: 200px;
-    height: 126px;
-    background-position: -628px -137px;
-}
-
-.sprite-santander_gold {
-    width: 200px;
-    height: 126px;
-    background-position: -5px -413px;
-}
-
-.sprite-santander_manu {
-    width: 200px;
-    height: 126px;
-    background-position: -215px -413px;
-}
-
-.sprite-santander_red {
-    width: 200px;
-    height: 126px;
-    background-position: -628px -406px;
-}
-
-.sprite-sas_amex_classic {
-    width: 200px;
-    height: 126px;
-    background-position: -635px -5px;
-}
-
-.sprite-yx_visa_bensinkort {
-    width: 200px;
-    height: 126px;
-    background-position: -635px -141px;
-}*/

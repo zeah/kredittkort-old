@@ -92,13 +92,13 @@ final class Emkk_edit {
 			'emkort' // page
 		);
 
-		add_meta_box(
-			'emkort_sprite', // name
-			'CSS Sprite', // title 
-			array($this,'create_meta_box_sprite'), // callback
-			'emkort', // page
-			'side'
-		);
+		// add_meta_box(
+		// 	'emkort_sprite', // name
+		// 	'CSS Sprite', // title 
+		// 	array($this,'create_meta_box_sprite'), // callback
+		// 	'emkort', // page
+		// 	'side'
+		// );
 
 		/* css sprite metabox */
 		// dropdown of images to use
@@ -133,9 +133,9 @@ final class Emkk_edit {
 		echo '<div class="emkort-meta-container"></div>';
 	}
 
-	public function create_meta_box_sprite($post) {
-		echo '<div class="emkort-sprite-container"></div>';
-	}
+	// public function create_meta_box_sprite($post) {
+	// 	echo '<div class="emkort-sprite-container"></div>';
+	// }
 
 	/*
 		helper function

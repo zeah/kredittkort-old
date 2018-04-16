@@ -18,8 +18,8 @@ final class Emkk_shortcode {
 	// private $sprite = EM_PLUGIN_URL.'assets/img/spritesheet_1.jpg';
 	private $sprite = EM_PLUGIN_URL.'assets/img/css_sprites-min.png';
 	// private $sprite = '';
-	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css';
-	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css';
+	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css?v=2.0.0';
+	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css?v=2.0.0';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
@@ -76,7 +76,7 @@ final class Emkk_shortcode {
 		echo '<link rel="preload" href="'.esc_url($this->desktop).'" as="style">';
 		echo '<link rel="preload" href="'.esc_url($this->mobile).'" as="style">';
 
-		echo '<style>.em-sprite { background-image: url("'.esc_html($this->sprite).'") }</style>';
+		// echo '<style>.em-sprite { background-image: url("'.esc_html($this->sprite).'") }</style>';
 	}
 
 	/*
@@ -144,18 +144,18 @@ final class Emkk_shortcode {
 								}
 
 		// returning html
-		if ($meta) 	return '<div class="emkort-thumbnail'.$align.' em-sprite sprite-'.esc_attr($meta).'"></div>'; // sprite
-		else 		{																					// wordpress db
-						$post = get_posts([
-							'name'        => $atts['name'],
-							'post_type'   => 'emkort',
-							'post_status' => 'publish',
-							'numberposts' => 1
-						]);
+		// if ($meta) 	return '<div class="emkort-thumbnail'.$align.' em-sprite sprite-'.esc_attr($meta).'"></div>'; // sprite
+		// else 		{																					// wordpress db
+		$post = get_posts([
+			'name'        => $atts['name'],
+			'post_type'   => 'emkort',
+			'post_status' => 'publish',
+			'numberposts' => 1
+		]);
 
-						$thumbnail = get_the_post_thumbnail_url($post[0], 'full');
-						if ($thumbnail) return '<div class="emkort-thumbnail'.$align.'"><img class="emkort-thumbnail-image" src="'.esc_url($thumbnail).'"></div>';
-					}
+		$thumbnail = get_the_post_thumbnail_url($post[0], 'full');
+		if ($thumbnail) return '<div class="emkort-thumbnail'.$align.'"><img class="emkort-thumbnail-image" src="'.esc_url($thumbnail).'"></div>';
+					// }
 	}
 
 	/*
@@ -278,9 +278,9 @@ final class Emkk_shortcode {
 			
 		$html .= '<div class="emkort-title"><h2 class="emkort-title-header"><a class="emkort-title-text" href="'.$this->filter_bb(esc_url($lesmer)).'">'.esc_html($title).'</a></h2></div>';
 	
-		if ($sprite) 		$html .= '<div class="emkort-thumbnail em-sprite sprite-'.esc_attr($sprite).'"></div>';
-		elseif ($thumbnail) $html .= '<div class="emkort-thumbnail"><img class="emkort-thumbnail-image" src="'.$this->filter_bb(esc_url($thumbnail)).'"></div>';
-		else 				$html .= '<div class="emkort-thumbnail"></div>';
+		// if ($sprite) 		$html .= '<div class="emkort-thumbnail em-sprite sprite-'.esc_attr($sprite).'"></div>';
+		if ($thumbnail) $html .= '<div class="emkort-thumbnail"><img class="emkort-thumbnail-image" src="'.$this->filter_bb(esc_url($thumbnail)).'"></div>';
+		else 			$html .= '<div class="emkort-thumbnail"></div>';
 
 		
 		if ($infoEn) $html .= '<div class="emkort-info-0 emkort-info">'.$this->filter_bb(esc_html($infoEn)).'</div>';
