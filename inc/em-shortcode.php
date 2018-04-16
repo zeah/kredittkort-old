@@ -55,7 +55,7 @@ final class Emkk_shortcode {
 		add_action('emkort_shortcode', array($this, 'emkort_shortcode'));
 
 		// adding preload links
-		add_action('wp_head', array($this, 'head'));
+		// add_action('wp_head', array($this, 'head'));
 	}
 
 	/*
@@ -72,9 +72,9 @@ final class Emkk_shortcode {
 		adds preload sprite to head
 	*/
 	public function head() {
-		echo '<link rel="preload" href="'.esc_url($this->sprite).'">';
-		echo '<link rel="preload" href="'.esc_url($this->desktop).'" as="css">';
-		echo '<link rel="preload" href="'.esc_url($this->mobile).'" as="css">';
+		// echo '<link rel="preload" href="'.esc_url($this->sprite).'" as="image">';
+		echo '<link rel="preload" href="'.esc_url($this->desktop).'" as="style">';
+		echo '<link rel="preload" href="'.esc_url($this->mobile).'" as="style">';
 
 		echo '<style>.em-sprite { background-image: url("'.esc_html($this->sprite).'") }</style>';
 	}
@@ -123,7 +123,7 @@ final class Emkk_shortcode {
 		// getting meta ('ignore' is the tax to ignore)
 		$meta = $this->get_meta($atts['name'], 'em_sokna', 'ignore');
 
-		if ($meta) return '<div class="emkort-sokna" style="width: 20rem"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($meta).'">Bestill Kortet</a></div>';
+		if ($meta) return '<div class="emkort-sokna emkort-sokna-bestill"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($meta).'">Bestill Kortet</a></div>';
 	}
 
 	public function shortcode_bilde($atts, $content = null) {
@@ -349,6 +349,8 @@ final class Emkk_shortcode {
 	*/
 	private function add_css() {
 		if (! $this->added_js) {
+			add_action('wp_head', array($this, 'head'));
+
 			add_action('wp_footer', array($this, 'footer'));
 			$this->add_js = true;
 		}
