@@ -289,8 +289,7 @@ final class Emkk_shortcode {
 
 		if ($infoTre) $html .= '<div class="emkort-info-2 emkort-info">'.$this->filter_bb(esc_html($infoTre)).'</div>';
 
-		// $html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" onclick="window.open(\''.esc_url($sokna).'\')">Bestill Kortet</a></div>';
-		$html .= '<div class="emkort-sokna"><a class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
+		$html .= '<div class="emkort-sokna"><a target="_blank" class="emkort-lenke emkort-sokna-lenke" href="'.esc_url($sokna).'">Bestill Kortet</a></div>';
 		$html .= '<div class="emkort-lesmer"><a class="emkort-lenke emkort-lesmer-lenke" href="'.$this->filter_bb(esc_url($lesmer)).'">Les Mer</a></div>';
 		
 		if ($ageOw)	$html .= '<div class="emkort-alderow">'.$this->filter_bb(esc_html($ageOw)).'</div>';
