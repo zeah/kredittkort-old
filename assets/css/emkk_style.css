@@ -240,9 +240,16 @@ p:empty {
 	line-height: 3.2;
 }
 .emkort-logo-container {
+	/*margin: auto;*/
+	/*float: right;*/
 	position: relative;
-	top: 0.3rem;
-	right: 0.8rem;
+	right: 0rem;
+}
+
+.emkort-logo {
+	position: relative;
+	top: 0.5rem;
+	right: 1rem;
 }
 
 /* COLUMN 3 TEMPLATE */
