@@ -27,6 +27,10 @@ final class Emkk_shortcode {
 		return self::$instance;
 	}
 
+	// public static function get_short() {
+	// 	return do_shortcode('[emkort]');
+	// }
+
 	private function __construct() {
 		// giving access to taxonomy
 		Emkk_taxonomy::get_instance();
@@ -163,7 +167,6 @@ final class Emkk_shortcode {
 	*/
 	private function do_loop($name = null, $kort = null) {
 		// print_r($kort);
-
 		// for query
 		$args = [
 			'post_type' => 'emkort',
@@ -402,5 +405,17 @@ final class Emkk_shortcode {
 		$meta = get_post_meta($post_id, 'em_data');
 
 		if (isset($meta[0])) echo $this->make_kredittkort($meta[0]); 
+	}
+
+	public function emkort_short($input = null) {
+
+		$posts = get_posts([
+			// 'name'        => $slug,
+			'post_type'   => 'emkort',
+			'post_status' => 'publish',
+			'numberposts' => -1
+		]);
+
+		return $posts;
 	}
 }

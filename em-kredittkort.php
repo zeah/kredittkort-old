@@ -18,9 +18,9 @@ function emkk_init() {
 	if (is_admin())
 		/* admin page */
 		Emkk_admin::get_instance();
-	else
+	// else
 		/* front page */
-		Emkk_shortcode::get_instance();
+	Emkk_shortcode::get_instance();
 
 
 }
