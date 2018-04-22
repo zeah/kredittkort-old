@@ -312,10 +312,10 @@ final class Emkk_shortcode {
 		$html .= '<div class="emkort-logo-container">';
 		foreach($terms as $term) {
 			if ($term->slug == 'visa')
-				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/visa_logo.png">';
+				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/visa-logo.png">';
 				// $html .= '<span class="em-sprite sprite-visa_logo"></span>';
 			elseif ($term->slug == 'mastercard')
-				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/mastercard_logo.png">';
+				$html .= '<img class="emkort-logo" src="'.EM_PLUGIN_URL.'assets/img/mastercard-logo.png">';
 				// $html .= '<span class="em-sprite sprite-mastercard_logo"></span>';
 		}
 		$html .= '</div>';
