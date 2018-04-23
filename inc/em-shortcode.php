@@ -169,11 +169,13 @@ final class Emkk_shortcode {
 		wp query
 	*/
 	private function do_loop($name = null, $kort = null) {
+		global $post;
 		// print_r($kort);
 		// for query
 		$args = [
 			'post_type' => 'emkort',
 			'posts_per_page' => -1,
+			'post_status' => 'publish',
 			'orderby' => array(
 				'meta_value_num' => 'ASC',
 				'title' => 'ASC'
@@ -194,8 +196,13 @@ final class Emkk_shortcode {
 		// if $name is not null
 		if (is_array($name)) $args['post_name__in'] = $name; 
 
-		$query = new WP_Query($args);
+		$posts = get_posts($args);
 
+		// wp_die(print_r($posts, true));
+
+		$query = new WP_Query($args);
+		// wp_die(print_r($query->posts, true));
+		
 		// sorting posts as they are listed in [emkort name=""]
 		if (is_array($name)) {
 			$posts = [];
@@ -211,6 +218,23 @@ final class Emkk_shortcode {
 
 		// container element
 		$html = '<div class="emkort-kortliste" style="opacity: 0">';
+
+
+		// foreach($posts as $p) {
+		// 	$terms = wp_get_post_terms($p->ID, 'korttype');
+			
+		// 	$ignore = false;
+		// 	foreach($terms as $term) {
+		// 		if ($term->slug == 'ignore') 							$ignore = true;
+		// 		elseif ($term->slug == 'duplicate' && !$name && !$kort) $ignore = true;
+		// 	}
+		// 	if ($ignore) continue;
+
+
+		// 	$meta = get_post_meta($p->ID, 'em_data');
+
+		// 	if (isset($meta[0])) $html .= $this->make_kredittkort($p, $meta[0]);
+		// }
 
 		if ($query->have_posts()) 
 			while ($query->have_posts()) {
@@ -230,7 +254,7 @@ final class Emkk_shortcode {
 						|| $term->slug == 'mastercard') array_push($logo, $term->slug);
 				}
 
-				if ($ignore) continue;
+				// if ($ignore) continue;
 
 				// getting the meta
 				$meta = get_post_meta($post->ID, 'em_data');
@@ -241,7 +265,7 @@ final class Emkk_shortcode {
 				$meta['logo'] = $logo;
 
 				// adding the meta
-				$html .= $this->make_kredittkort($meta);
+				$html .= $this->make_kredittkort($post, $meta);
 
 			}
 
@@ -255,13 +279,13 @@ final class Emkk_shortcode {
 		returns the html version of kredittkort
 		TODO visa/mastercard logo
 	*/
-	private function make_kredittkort($meta = null) {
-		global $post;
+	private function make_kredittkort($post, $meta = null) {
+		// global $post;
 
 		if (!$meta) return '';
 
 		if (isset($meta['em_title']) && $meta['em_title']) 	$title = $meta['em_title'];
-		else 												$title = get_the_title();
+		else 												$title = get_the_title($post);
 
 		$thumbnail = get_the_post_thumbnail_url($post, 'full');
 		$lesmer = isset($meta['em_lesmer']) ? $meta['em_lesmer'] : '';
@@ -407,22 +431,29 @@ final class Emkk_shortcode {
 
 		$meta = get_post_meta($post_id, 'em_data');
 
-		if (isset($meta[0])) echo $this->make_kredittkort($meta[0]); 
+		if (isset($meta[0])) echo $this->make_kredittkort(get_post($post_id), $meta[0]); 
 	}
 
+
+	/**
+		Filter for adding links to SEO META BOX in edit
+	*/
 	public function plugin_links($data) {
 		global $post;
 		$con = $post->post_content;
 
 		$args = [
 			'post_type' => 'emkort',
-			'post_status' => 'publis',
+			'post_status' => 'publish',
 			'numberposts' => -1
 		];
 
 		preg_match('/(?:\[emkort.*?)(kort|name)(?:=)(.*?)\]/', $con, $matches);
 
-		if (isset($matches[1])) {
+		$name = false;
+		$kort = false;
+
+		if (isset($matches[1])) 
 			switch($matches[1]) {
 				case 'kort':
 					$args['tax_query'] = [
@@ -432,53 +463,57 @@ final class Emkk_shortcode {
 							'terms' => $matches[2]
 						]
 					];
+					$kort = true;
 					break;
 				case 'name':
+					$args['post_name__in'] = explode(',', $matches[2]); 
+					$name = true;
 					break;
 			}
-		}
-
-
+		
+		
 		$posts = get_posts($args);
-
-
+		
 		$links = [];
 
+		// populating links
 		foreach($posts as $p) {
+
+			// skip posts with term ignore or (duplicate and !name and !kort)
+			$terms = wp_get_post_terms($p->ID, 'korttype');
+			$ignore = false;
+			foreach($terms as $term) {
+				if ($term->slug == 'ignore') 							$ignore = true;
+				elseif ($term->slug == 'duplicate' && !$name && !$kort) $ignore = true;
+			}
+			if ($ignore) continue;
+
 			$meta = get_post_meta($p->ID, 'em_data');
+
 			if (isset($meta[0]) && isset($meta[0]['em_sokna']) && isset($meta[0]['em_lesmer'])) {
 				$o = [
-					'internal' => [
-						'name' => '(em-kredittkort) Les mer',
-						'url' => $meta[0]['em_lesmer']
+					'data' => [[
+						'name' => '(em-kredittkort) Les Mer',
+						'url' => $meta[0]['em_lesmer'],
+						'open' => ''
 					],
-					'external' => [
-						'name' => '(em-kredittkort) Søk nå',
-						'url' => $meta[0]['em_sokna']
+					[
+						'name' => '(em-kredittkort) '.get_the_title($p),
+						'url' => $meta[0]['em_lesmer'],
+						'open' => ''
 					],
+					[
+						'name' => '(em-kredittkort) Bestill Kortet',
+						'url' => $meta[0]['em_sokna'],
+						'open' => 'new tab'
+					]],
+
 					'link' => site_url().'/wp-admin/post.php?post='.$p->ID.'&action=edit'
 				];
 
 				array_push($links, $o);
 			}
 		}
-
-
-		// return $posts;
 		return $links;
-
-		// return $matches;
 	}
-
-	// public function emkort_short($input = null) {
-
-	// 	$posts = get_posts([
-	// 		// 'name'        => $slug,
-	// 		'post_type'   => 'emkort',
-	// 		'post_status' => 'publish',
-	// 		'numberposts' => -1
-	// 	]);
-
-	// 	return $posts;
-	// }
 }
