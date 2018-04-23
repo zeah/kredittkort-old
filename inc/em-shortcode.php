@@ -58,6 +58,9 @@ final class Emkk_shortcode {
 		// filter for theme search
 		add_action('emkort_shortcode', array($this, 'emkort_shortcode'));
 
+
+		add_filter('emtheme_plugin_links', array($this, 'plugin_links'));
+
 		// adding preload links
 		// add_action('wp_head', array($this, 'head'));
 	}
@@ -407,15 +410,75 @@ final class Emkk_shortcode {
 		if (isset($meta[0])) echo $this->make_kredittkort($meta[0]); 
 	}
 
-	public function emkort_short($input = null) {
+	public function plugin_links($data) {
+		global $post;
+		$con = $post->post_content;
 
-		$posts = get_posts([
-			// 'name'        => $slug,
-			'post_type'   => 'emkort',
-			'post_status' => 'publish',
+		$args = [
+			'post_type' => 'emkort',
+			'post_status' => 'publis',
 			'numberposts' => -1
-		]);
+		];
 
-		return $posts;
+		preg_match('/(?:\[emkort.*?)(kort|name)(?:=)(.*?)\]/', $con, $matches);
+
+		if (isset($matches[1])) {
+			switch($matches[1]) {
+				case 'kort':
+					$args['tax_query'] = [
+						[
+							'taxonomy' => 'korttype',
+							'field' => 'slug',
+							'terms' => $matches[2]
+						]
+					];
+					break;
+				case 'name':
+					break;
+			}
+		}
+
+
+		$posts = get_posts($args);
+
+
+		$links = [];
+
+		foreach($posts as $p) {
+			$meta = get_post_meta($p->ID, 'em_data');
+			if (isset($meta[0]) && isset($meta[0]['em_sokna']) && isset($meta[0]['em_lesmer'])) {
+				$o = [
+					'internal' => [
+						'name' => '(em-kredittkort) Les mer',
+						'url' => $meta[0]['em_lesmer']
+					],
+					'external' => [
+						'name' => '(em-kredittkort) Søk nå',
+						'url' => $meta[0]['em_sokna']
+					],
+					'link' => site_url().'/wp-admin/post.php?post='.$p->ID.'&action=edit'
+				];
+
+				array_push($links, $o);
+			}
+		}
+
+
+		// return $posts;
+		return $links;
+
+		// return $matches;
 	}
+
+	// public function emkort_short($input = null) {
+
+	// 	$posts = get_posts([
+	// 		// 'name'        => $slug,
+	// 		'post_type'   => 'emkort',
+	// 		'post_status' => 'publish',
+	// 		'numberposts' => -1
+	// 	]);
+
+	// 	return $posts;
+	// }
 }

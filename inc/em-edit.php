@@ -35,6 +35,7 @@ final class Emkk_edit {
 		add_filter('manage_emkort_posts_custom_column', array($this, 'custom_column'));
 		add_filter('manage_edit-emkort_sortable_columns', array($this, 'sort_column'));
 		
+
 		/* metabox, javascript */
 		add_action('add_meta_boxes_emkort', array($this, 'create_meta'));
 
