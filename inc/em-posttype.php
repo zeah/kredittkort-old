@@ -61,7 +61,7 @@ final class Emkk_posttype {
 			'show_ui'             => true,
 			'show_in_menu'        => true,
 			'show_in_admin_bar'   => true,
-			'menu_position'       => null,
+			'menu_position'       => 30,
 			'menu_icon' => 'dashicons-id',
 			'show_in_nav_menus'   => false,
 			'publicly_queryable'  => false,

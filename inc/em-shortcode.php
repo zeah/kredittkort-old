@@ -492,21 +492,23 @@ final class Emkk_shortcode {
 
 			if (isset($meta[0]) && isset($meta[0]['em_sokna']) && isset($meta[0]['em_lesmer'])) {
 				$o = [
-					'data' => [[
-						'name' => '(em-kredittkort) Les Mer',
-						'url' => $meta[0]['em_lesmer'],
-						'open' => ''
+					'data' => [
+						[
+							'name' => '(em-kredittkort) Les Mer',
+							'url' => $meta[0]['em_lesmer'],
+							'open' => ''
+						],
+						[
+							'name' => '(em-kredittkort) '.get_the_title($p),
+							'url' => $meta[0]['em_lesmer'],
+							'open' => ''
+						],
+						[
+							'name' => '(em-kredittkort) Bestill Kortet',
+							'url' => $meta[0]['em_sokna'],
+							'open' => 'new tab'
+						]
 					],
-					[
-						'name' => '(em-kredittkort) '.get_the_title($p),
-						'url' => $meta[0]['em_lesmer'],
-						'open' => ''
-					],
-					[
-						'name' => '(em-kredittkort) Bestill Kortet',
-						'url' => $meta[0]['em_sokna'],
-						'open' => 'new tab'
-					]],
 
 					'link' => site_url().'/wp-admin/post.php?post='.$p->ID.'&action=edit'
 				];
