@@ -478,7 +478,6 @@ final class Emkk_shortcode {
 
 		// populating links
 		foreach($posts as $p) {
-
 			// skip posts with term ignore or (duplicate and !name and !kort)
 			$terms = wp_get_post_terms($p->ID, 'korttype');
 			$ignore = false;
@@ -494,17 +493,17 @@ final class Emkk_shortcode {
 				$o = [
 					'data' => [
 						[
-							'name' => '(em-kredittkort) Les Mer',
+							'name' => '(em-kredittkort '.$p->post_title.') Les Mer',
 							'url' => $meta[0]['em_lesmer'],
 							'open' => ''
 						],
 						[
-							'name' => '(em-kredittkort) '.get_the_title($p),
+							'name' => '(em-kredittkort '.$p->post_title.') '.get_the_title($p),
 							'url' => $meta[0]['em_lesmer'],
 							'open' => ''
 						],
 						[
-							'name' => '(em-kredittkort) Bestill Kortet',
+							'name' => '(em-kredittkort '.$p->post_title.') Bestill Kortet',
 							'url' => $meta[0]['em_sokna'],
 							'open' => 'new tab'
 						]
