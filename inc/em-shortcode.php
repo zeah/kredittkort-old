@@ -254,7 +254,7 @@ final class Emkk_shortcode {
 						|| $term->slug == 'mastercard') array_push($logo, $term->slug);
 				}
 
-				// if ($ignore) continue;
+				if ($ignore) continue;
 
 				// getting the meta
 				$meta = get_post_meta($post->ID, 'em_data');

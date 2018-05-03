@@ -45,6 +45,7 @@ p:empty {
 	padding: 0;
 	opacity: 1 !important;
 	color: hsl(0, 20%, 20%);
+	margin-top: 2rem;
 }
 
 .emkort-container {
