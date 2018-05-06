@@ -431,6 +431,11 @@ final class Emkk_shortcode {
 
 		$meta = get_post_meta($post_id, 'em_data');
 
+		foreach(wp_get_post_terms($post_id, 'korttype') as $term)
+			if ($term->slug == 'ignore') return;
+
+
+
 		if (isset($meta[0])) echo $this->make_kredittkort(get_post($post_id), $meta[0]); 
 	}
 
