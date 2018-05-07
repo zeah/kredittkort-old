@@ -18,8 +18,8 @@ final class Emkk_shortcode {
 	// private $sprite = EM_PLUGIN_URL.'assets/img/spritesheet_1.jpg';
 	private $sprite = EM_PLUGIN_URL.'assets/img/css_sprites-min.png';
 	// private $sprite = '';
-	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css?v=2.0.0';
-	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css?v=2.0.0';
+	private $desktop = EM_PLUGIN_URL.'assets/css/emkk_style.css?v=2.0.0.1';
+	private $mobile = EM_PLUGIN_URL.'assets/css/emkk_style_mobile.css?v=2.0.0.1';
 
 	public static function get_instance() {
 		if (self::$instance === null) self::$instance = new self();
