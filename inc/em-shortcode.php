@@ -70,6 +70,7 @@ final class Emkk_shortcode {
 	*/
 	public function set_search($query) {
         if ($query->is_search) {
+            if ($query->get('post_type') == 'user_request') return;
 	        if (!$query->get('post_type')) $query->set('post_type', array('page', 'post', 'emkort'));
     	    else $query->set('post_type', array_merge(array('emkort'), $query->get('post_type')));
 		}
