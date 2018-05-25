@@ -61,6 +61,9 @@ final class Emkk_shortcode {
 
 		add_filter('emtheme_plugin_links', array($this, 'plugin_links'));
 
+		add_action('emkort_search', array($this, 'emkort_shortcode'));
+		add_action('emkort_style', array($this, 'add_css'));
+
 		// adding preload links
 		// add_action('wp_head', array($this, 'head'));
 	}
@@ -378,7 +381,7 @@ final class Emkk_shortcode {
 		helper function for adding css
 		adds javascript to footer that adds css files to header
 	*/
-	private function add_css() {
+	public function add_css() {
 		if (! $this->added_js) {
 			add_action('wp_head', array($this, 'head'));
 
@@ -427,19 +430,28 @@ final class Emkk_shortcode {
 	/*
 		hook for search page
 	*/
-	public function emkort_shortcode($post_id) {
+	public function emkort_shortcode($post) {
+	// public function emkort_shortcode($post_id) {
 		add_action('wp_footer', array($this, 'footer'));
 
-		$meta = get_post_meta($post_id, 'em_data');
+		$meta = get_post_meta($post->ID, 'em_data');
 
-		foreach(wp_get_post_terms($post_id, 'korttype') as $term)
+		foreach(wp_get_post_terms($post->ID, 'korttype') as $term)
 			if ($term->slug == 'ignore') return;
 
 
 
-		if (isset($meta[0])) echo $this->make_kredittkort(get_post($post_id), $meta[0]); 
+		if (isset($meta[0])) echo $this->make_kredittkort(get_post($post->ID), $meta[0]); 
 	}
 
+
+	// public function emkort_style() {
+		// $this->add_css();
+	// }
+
+	// public function emkort_type($data) {
+
+	// }
 
 	/**
 		Filter for adding links to SEO META BOX in edit
