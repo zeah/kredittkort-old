@@ -3,7 +3,7 @@
 /**
 	Plugin Name: EM-kredittkort
 	Description: kredittkortliste for effektiv markedsforing
-	Version: 1.0.4.8
+	Version: 1.0.4.9
 	GitHub Plugin URI: zeah/EM-kredittkort
 */
 
