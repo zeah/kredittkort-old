@@ -4,6 +4,7 @@
 	Plugin Name: EM-kredittkort
 	Description: kredittkortliste for effektiv markedsforing
 	Version: 1.0.4.8
+	GitHub Plugin URI: zeah/EM-kredittkort
 */
 
 defined( 'ABSPATH' ) or die(' Blank Space' );
