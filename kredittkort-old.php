@@ -1,10 +1,9 @@
 <?php
-
 /**
-	Plugin Name: EM-kredittkort
-	Description: kredittkortliste for effektiv markedsforing
-	Version: 1.0.4.9
-	GitHub Plugin URI: zeah/EM-kredittkort
+Plugin Name: EM-kredittkort
+Description: kredittkortliste for effektiv markedsforing
+Version: 1.0.4.9
+GitHub Plugin URI: zeah/kredittkort-old
 */
 
 defined( 'ABSPATH' ) or die(' Blank Space' );
