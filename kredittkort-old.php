@@ -1,8 +1,8 @@
 <?php
 /**
-Plugin Name: EM-kredittkort
+Plugin Name: kredittkort liste
 Description: kredittkortliste for effektiv markedsforing
-Version: 1.0.4.9
+Version: 1.0.5
 GitHub Plugin URI: zeah/kredittkort-old
 */
 
