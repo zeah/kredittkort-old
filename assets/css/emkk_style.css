@@ -344,7 +344,7 @@ p:empty {
 .emkort-sokna-bestill {
 	position: relative;
 	top: 2rem;
-	bottom-margin: 4rem;
+	margin-bottom: 4rem;
 }
 
 /*

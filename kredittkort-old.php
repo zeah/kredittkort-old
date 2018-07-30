@@ -2,7 +2,7 @@
 /**
 Plugin Name: kredittkort liste
 Description: kredittkortliste for effektiv markedsforing
-Version: 1.0.6
+Version: 1.0.6.1
 GitHub Plugin URI: zeah/kredittkort-old
 */
 
